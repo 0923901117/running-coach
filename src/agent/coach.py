@@ -288,29 +288,28 @@ def check_injury(symptom: str) -> str:
 _faiss_db = None
 
 def _get_vectorstore():
-    """懒加载 FAISS 向量库"""
+    """懒加载 FAISS 向量库（降级安全）"""
     global _faiss_db
     if _faiss_db is not None:
         return _faiss_db
 
-    from langchain_huggingface import HuggingFaceEmbeddings
-    from langchain_community.vectorstores import FAISS
-    import os as _os
-    _os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
-
-    embeddings = HuggingFaceEmbeddings(
-        model_name="shibing624/text2vec-base-chinese",
-        cache_folder="/tmp/hf_cache" if _os.path.exists("/tmp") else None,
-    )
-
-    faiss_path = Path.home() / ".running_coach_faiss"
     try:
+        from langchain_huggingface import HuggingFaceEmbeddings
+        from langchain_community.vectorstores import FAISS
+        import os as _os
+        _os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
+
+        embeddings = HuggingFaceEmbeddings(
+            model_name="shibing624/text2vec-base-chinese",
+            cache_folder="/tmp/hf_cache" if _os.path.exists("/tmp") else None,
+        )
+
+        faiss_path = Path.home() / ".running_coach_faiss"
         if faiss_path.exists():
             _faiss_db = FAISS.load_local(str(faiss_path), embeddings, allow_dangerous_deserialization=True)
         else:
             _faiss_db = None
     except Exception as e:
-        print(f"FAISS 加载失败: {e}")
         _faiss_db = None
 
     return _faiss_db
