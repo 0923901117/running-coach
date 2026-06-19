@@ -1,0 +1,5 @@
+﻿.env
+data/runner_data.json
+src/knowledge/faiss_index/
+__pycache__/
+*.pyc

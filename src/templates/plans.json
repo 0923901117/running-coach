@@ -1,0 +1,123 @@
+﻿{
+  "templates": {
+    "6周入门3公里": {
+      "weeks": 6,
+      "sessions_per_week": 3,
+      "target_distance_km": 3.0,
+      "fit_for": {"max_distance": 3.0},
+      "schedule": [
+        ["run", "rest", "run", "rest", "run", "rest", "rest"],
+        ["run", "rest", "run", "rest", "run", "rest", "rest"],
+        ["run", "rest", "run", "rest", "run", "rest", "rest"],
+        ["run", "rest", "run", "rest", "run", "rest", "rest"],
+        ["run", "rest", "run", "rest", "run", "rest", "rest"],
+        ["run", "rest", "run", "rest", "run", "rest", "rest"]
+      ]
+    },
+    "8周入门5公里": {
+      "weeks": 8,
+      "sessions_per_week": 3,
+      "target_distance_km": 5.0,
+      "fit_for": {"max_distance": 5.0},
+      "schedule": [
+        ["run", "rest", "run", "rest", "run", "rest", "rest"],
+        ["run", "rest", "run", "rest", "run", "rest", "rest"],
+        ["run", "rest", "run", "rest", "run", "rest", "rest"],
+        ["run", "rest", "run", "rest", "run", "rest", "rest"],
+        ["run", "rest", "run", "rest", "run", "rest", "rest"],
+        ["run", "rest", "run", "rest", "run", "rest", "rest"],
+        ["run", "rest", "run", "rest", "run", "rest", "rest"],
+        ["run", "rest", "run", "rest", "run", "rest", "rest"]
+      ]
+    },
+    "10周入门10公里": {
+      "weeks": 10,
+      "sessions_per_week": 3,
+      "target_distance_km": 10.0,
+      "fit_for": {"max_distance": 10.0},
+      "schedule": [
+        ["run", "rest", "run", "rest", "run", "rest", "rest"],
+        ["run", "rest", "run", "rest", "run", "rest", "rest"],
+        ["run", "rest", "run", "rest", "run", "rest", "rest"],
+        ["run", "rest", "run", "rest", "run", "rest", "rest"],
+        ["run", "rest", "run", "rest", "run", "rest", "rest"],
+        ["run", "rest", "run", "rest", "run", "rest", "rest"],
+        ["run", "rest", "run", "rest", "run", "rest", "rest"],
+        ["run", "rest", "run", "rest", "run", "rest", "rest"],
+        ["run", "rest", "run", "rest", "run", "rest", "rest"],
+        ["run", "rest", "run", "rest", "run", "rest", "rest"]
+      ]
+    },
+    "12周半马入门": {
+      "weeks": 12,
+      "sessions_per_week": 4,
+      "target_distance_km": 21.1,
+      "fit_for": {"max_distance": 21.1},
+      "schedule": [
+        ["run", "rest", "run", "rest", "run", "rest", "run"],
+        ["run", "rest", "run", "rest", "run", "rest", "run"],
+        ["run", "rest", "run", "rest", "run", "rest", "run"],
+        ["run", "rest", "run", "rest", "run", "rest", "run"],
+        ["run", "rest", "run", "rest", "run", "rest", "run"],
+        ["run", "rest", "run", "rest", "run", "rest", "run"],
+        ["run", "rest", "run", "rest", "run", "rest", "run"],
+        ["run", "rest", "run", "rest", "run", "rest", "run"],
+        ["run", "rest", "run", "rest", "run", "rest", "run"],
+        ["run", "rest", "run", "rest", "run", "rest", "run"],
+        ["run", "rest", "run", "rest", "run", "rest", "run"],
+        ["run", "rest", "run", "rest", "run", "rest", "run"]
+      ]
+    }
+  },
+  "module_config": {
+    "warmup": {
+      "description": "跑前动态热身",
+      "duration_min": 5,
+      "exercises": [
+        "开合跳 30秒×2",
+        "高抬腿 30秒×2",
+        "踢臀跑 30秒×2",
+        "弓步转体 每侧30秒",
+        "踝关节环绕 每侧30秒"
+      ]
+    },
+    "stretch": {
+      "description": "跑后静态拉伸",
+      "duration_min": 10,
+      "exercises": [
+        "大腿前侧拉伸 每侧30秒×2",
+        "大腿后侧拉伸 每侧30秒×2",
+        "小腿拉伸 每侧30秒×2",
+        "髋屈肌拉伸 每侧30秒×2",
+        "臀部拉伸 每侧30秒×2"
+      ]
+    },
+    "strength": {
+      "description": "腿部力量训练",
+      "duration_min": 20,
+      "exercises": [
+        "深蹲 3组×15次",
+        "弓步蹲 3组×12次（每侧）",
+        "提踵 3组×20次",
+        "臀桥 3组×15次",
+        "平板支撑 3组×30秒"
+      ]
+    },
+    "vo2max": {
+      "description": "最大摄氧量间歇训练",
+      "pattern": "高强度间歇",
+      "default": {"intervals": "4×400m", "rest_ratio": "1:1"}
+    },
+    "lactate": {
+      "description": "乳酸耐受阈值训练",
+      "pattern": "节奏跑",
+      "default": {"duration_min": 15, "pace": "阈值配速"}
+    }
+  },
+  "progression": {
+    "weekly_increase_pct": 10,
+    "vo2max_start_week": 4,
+    "lactate_start_week": 4,
+    "strength_start_week": 3
+  }
+}
