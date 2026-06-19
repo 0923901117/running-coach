@@ -10,6 +10,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+try:
+    import streamlit as st
+    DEEPSEEK_API_KEY = st.secrets.get("DEEPSEEK_API_KEY", os.getenv("DEEPSEEK_API_KEY"))
+    DEEPSEEK_BASE_URL = st.secrets.get("DEEPSEEK_BASE_URL", os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com"))
+except:
+    DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
+    DEEPSEEK_BASE_URL = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com")
+
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 from langchain_core.output_parsers import StrOutputParser
@@ -23,8 +31,8 @@ KNOWLEDGE_DIR = BASE_DIR / "src" / "knowledge"
 
 LLM = ChatOpenAI(
     model="deepseek-chat",
-    api_key=os.getenv("DEEPSEEK_API_KEY"),
-    base_url=os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com"),
+    api_key=DEEPSEEK_API_KEY,
+    base_url=DEEPSEEK_BASE_URL,
     temperature=0.7,
     max_tokens=1024,
 )
@@ -287,8 +295,13 @@ def _get_vectorstore():
 
     from langchain_huggingface import HuggingFaceEmbeddings
     from langchain_community.vectorstores import FAISS
+    import os as _os
+    _os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 
-    embeddings = HuggingFaceEmbeddings(model_name="shibing624/text2vec-base-chinese")
+    embeddings = HuggingFaceEmbeddings(
+        model_name="shibing624/text2vec-base-chinese",
+        cache_folder="/tmp/hf_cache" if _os.path.exists("/tmp") else None,
+    )
 
     faiss_path = Path.home() / ".running_coach_faiss"
     try:
